@@ -54,7 +54,7 @@ nRPO
 
 ### Diversity metrics
 
-#### Diversity of a single predator - Figure 3A
+#### Abundance-based diversity of a single predator - Figure 3A
 
 ````R
 predator="Predator1" #Can be changed to "Predator2" or "Predator3"
@@ -71,7 +71,7 @@ library(hilldiv)
 hill_div(NPAM,qvalue=1)
 ````
 
-#### Diversity of the entire predator system (gamma diversity) - Figure 3B
+####  Abundance-based diversity of the entire predator system (gamma diversity) - Figure 3B
 
 Using even predator weights
 ````R
@@ -85,6 +85,7 @@ pi.w.sum.q <- pi.w.sum^q
 basicsum <- sum(pi.w.sum.q)
 basicsum^(1/(1-q))
 ````
+
 Using predator weights leveled to sequencing depth
 ````R
 seqdepthweight <- colSums(APAM) / sum(colSums(APAM))
@@ -92,7 +93,7 @@ q=1 #Can be changed to 0, 2 or any other positive value
 if(q == 1){q=0.999999999} # Because the function is not defined for the unity
 pi <- NPAM
 pi.w <- sweep(pi, 2, seqdepthweight, "*")
-pi.w.sum <- rowSums(pi.w)
+pi.w.sum <- rowSums(pi.w) # Note that this is identical to RPA
 pi.w.sum.q <- pi.w.sum^q
 basicsum <- sum(pi.w.sum.q)
 basicsum^(1/(1-q))
@@ -104,4 +105,20 @@ library(hilldiv)
 gamma_div(NPAM,qvalue=1)
 gamma_div(NPAM,qvalue=1,weight=evenweight)
 gamma_div(NPAM,qvalue=1,weight=seqdepthweight)
+````
+
+#### Incidence-based diversity of the entire predator system (gamma diversity) - Figure 3C
+````R
+q=2 #Can be changed to 0, 2 or any other positive value
+if(q == 1){q=0.999999999} # Because the function is not defined for the unity
+pi <- RPO
+pi.q <- pi^q
+basicsum <- sum(pi.q)
+basicsum^(1/(1-q))
+````
+Luckily, functions to easily compute this exist
+````R
+library(hilldiv)
+hill_div(to.incidence(APAM),qvalue=1)
+hill_div(RPO,qvalue=1)
 ````
