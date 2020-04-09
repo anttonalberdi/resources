@@ -3,11 +3,23 @@
 
 This contents are related with the article "Harmonising relative prey contribution and dietary diversity metrics in DNA metabarcoding studies" that will be soon sent to a peer-review journal.
 
-````R
-#Create the original predator-prey matrix
-matrix <- cbind(Predator1=c(10,0,20,30),Predator2=c(10,0,10,0),Predator3=c(20,25,20,5))
-rownames(matrix) <- c("Prey1","Prey2","Prey3","Prey4")
+### Four basic predator-prey matrices
 
-#Visualise it
-matrix
+````R
+#Create the original "Absolute Prey Abundance Matrix"
+APAM <- cbind(Predator1=c(10,0,20,30),Predator2=c(10,0,10,0),Predator3=c(20,25,20,5))
+rownames(APAM) <- c("Prey1","Prey2","Prey3","Prey4")
+APAM
+
+#Transform APAM to "Absolute Prey Occurrence Matrix"
+APOM <- APAM
+APOM[APOM != 0] <- 1
+
+#Transform APAM to "Normalised Prey Abundance Matrix"
+NPAM <- apply(APAM,2,function(x){x/sum(x)})
+NPAM
+
+#Transform APOM to "Normalised Prey Occurrence Matrix"
+NPOM <- apply(APOM,2,function(x){x/sum(x)})
+NPOM
 ````
