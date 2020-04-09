@@ -49,3 +49,18 @@ NPOMsums <- rowSums(NPOM)
 nRPO <- NPOMsums / sum(NPOMsums)
 nRPO
 ````
+
+--ADD Figure 2--
+
+### Diversity metrics
+
+#### Diversity of a single predator - Figure 3A
+
+````R
+q=1
+if(q == 1){q=0.999999999} # Because the function is not defined for the unity
+pi <- NPAM[,1]
+pi.q <- pi^q
+basicsum <- sum(pi.q)
+basicsum^(1/(1-q))
+````
