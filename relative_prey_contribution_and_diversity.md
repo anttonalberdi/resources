@@ -65,3 +65,8 @@ pi.q <- pi^q
 basicsum <- sum(pi.q)
 basicsum^(1/(1-q))
 ````
+Luckily, functions to easily compute individual diversity metrics exist
+````R
+library(hilldiv)
+hill_div(NPAM,qvalue=1)
+````
