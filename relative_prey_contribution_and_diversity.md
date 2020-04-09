@@ -70,3 +70,19 @@ Luckily, functions to easily compute individual diversity metrics exist
 library(hilldiv)
 hill_div(NPAM,qvalue=1)
 ````
+
+#### Diversity of the entire predator system (gamma diversity) - Figure 3B
+
+Using even predator weights
+````R
+evenweight=c(1/3,1/3,1/3)
+q=2 #Can be changed to 0, 2 or any other positive value
+if(q == 1){q=0.999999999} # Because the function is not defined for the unity
+pi <- NPAM
+pi.w <- sweep(pi, 2, evenweight, "*")
+pi.w.sum <- rowSums(pi.w)
+pi.w.sum.q <- pi.w.sum^q
+basicsum <- sum(pi.w.sum.q)
+basicsum^(1/(1-q))
+````
+Using predator weights leveled to sequencing depth
