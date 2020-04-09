@@ -57,9 +57,10 @@ nRPO
 #### Diversity of a single predator - Figure 3A
 
 ````R
-q=1
+predator="Predator1" #Can be changed to "Predator2" or "Predator3"
+q=1 #Can be changed to 0, 2 or any other positive value
 if(q == 1){q=0.999999999} # Because the function is not defined for the unity
-pi <- NPAM[,1]
+pi <- NPAM[,predator]
 pi.q <- pi^q
 basicsum <- sum(pi.q)
 basicsum^(1/(1-q))
