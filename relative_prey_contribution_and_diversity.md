@@ -54,6 +54,8 @@ nRPO
 
 ### Diversity metrics
 
+--ADD Figure 3--
+
 #### Abundance-based diversity of a single predator - Figure 3A
 
 ````R
