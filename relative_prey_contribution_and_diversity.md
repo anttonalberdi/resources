@@ -8,20 +8,20 @@ This contents are related with the article "Harmonising relative prey contributi
 All relative prey contribution and dietary diversity metrics are computed based on the following four predator-prey matrices. Note that predator can refer to a replicate, a sample, an individual or any other unit defined by researchers, and prey can refer to unique DNA haplotypes, ASVs, OTUs, species or another type defined by researchers.
 
 ````R
-#Create the original "Absolute Prey Abundance Matrix" (APAM) - Figure 1A
-APAM <- cbind(Predator1=c(10,0,20,30),Predator2=c(10,0,10,0),Predator3=c(20,25,20,5))
+#Create the original "Absolute Prey Abundance Matrix" (APAM) - Figure 1a
+APAM <- cbind(Predator1=c(10,1,20,30),Predator2=c(10,0,10,0),Predator3=c(90,45,29,5))
 rownames(APAM) <- c("Prey1","Prey2","Prey3","Prey4")
 APAM
 
-#Transform APAM to "Absolute Prey Occurrence Matrix" (APOM) - Figure 1B
+#Transform APAM to "Absolute Prey Occurrence Matrix" (APOM) - Figure 1b
 APOM <- APAM
 APOM[APOM != 0] <- 1
 
-#Transform APAM to "Normalised Prey Abundance Matrix" (NPAM) - Figure 1C
+#Transform APAM to "Normalised Prey Abundance Matrix" (NPAM) - Figure 1c
 NPAM <- apply(APAM,2,function(x){x/sum(x)})
 NPAM
 
-#Transform APOM to "Normalised Prey Occurrence Matrix" (NPOM) - Figure 1D
+#Transform APOM to "Normalised Prey Occurrence Matrix" (NPOM) - Figure 1d
 NPOM <- apply(APOM,2,function(x){x/sum(x)})
 NPOM
 ````
